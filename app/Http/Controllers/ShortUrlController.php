@@ -25,18 +25,6 @@ class ShortUrlController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -71,38 +59,19 @@ class ShortUrlController extends Controller
 
         //
     }
+    public function resolve($code)
+{
+    $data = ShortUrl::where('shortUrl', $code)->firstOrFail();
+
+    return response()->json([
+        'originalUrl' => $data->originalUrl
+    ]);
+}
 
     /**
      * Display the specified resource.
      */
-    public function show(shortUrl $shortUrl)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(shortUrl $shortUrl)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, shortUrl $shortUrl)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(shortUrl $shortUrl)
-    {
-        //
-    }
     public function redirect($code)
     {
         $data = shortUrl::where('shortUrl', $code)->firstOrFail();
